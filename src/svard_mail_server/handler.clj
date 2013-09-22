@@ -1,5 +1,6 @@
 (ns svard-mail-server.handler
-  (:use compojure.core)
+  (:use [compojure.core]
+        [svard-mail-server.template])
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [cemerick.friend :as friend]
@@ -7,7 +8,7 @@
                              [workflows :as workflows])))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/" request (index))
   (route/resources "/")
   (route/not-found "Not Found"))
 
