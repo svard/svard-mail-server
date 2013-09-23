@@ -1,6 +1,6 @@
 (ns svard-mail-server.handler
   (:use [compojure.core]
-        [svard-mail-server.template])
+        [svard-mail-server template db])
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [cemerick.friend :as friend]

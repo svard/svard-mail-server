@@ -5,7 +5,8 @@
                  [compojure "1.1.5" :exclusions [ring/ring-core org.clojure/core.incubator]]
                  [com.cemerick/friend "0.1.5"]
                  [org.clojure/data.json "0.2.3"]
-                 [enlive "1.1.4"]]
+                 [enlive "1.1.4"]
+                 [com.novemberain/monger "1.5.0"]]
   :plugins [[lein-ring "0.8.7"]]
   :ring {:handler svard-mail-server.handler/app}
   :profiles
