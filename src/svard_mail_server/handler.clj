@@ -8,9 +8,16 @@
                              [workflows :as workflows])))
 
 (defroutes app-routes
-  (GET "/" request (index))
+  (GET "/" request (friend/authorize #{::user} (index)))
+  (GET "/login" request (login-template))
   (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
-  (handler/site app-routes))
+  (handler/site 
+    (friend/authenticate 
+      app-routes
+      {:login-uri "/login"
+       :default-landing-uri "/"
+       :credential-fn (partial creds/bcrypt-credential-fn get-credential-map)
+       :workflows [(workflows/interactive-form)]})))
