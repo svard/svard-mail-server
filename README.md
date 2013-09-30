@@ -1,6 +1,6 @@
 # svard-mail-server
 
-FIXME
+Clojure backend for svard-mail.
 
 ## Prerequisites
 
