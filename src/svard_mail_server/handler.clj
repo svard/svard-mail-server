@@ -1,7 +1,7 @@
 (ns svard-mail-server.handler
   (:use [compojure.core]
         [ring.util.response]
-        [svard-mail-server template db])
+        [svard-mail-server template authentication])
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [cemerick.friend :as friend]
@@ -21,5 +21,4 @@
       app-routes
       {:login-uri "/login"
        :default-landing-uri "/"
-       :credential-fn (partial creds/bcrypt-credential-fn get-credentials)
-       :workflows [(workflows/interactive-form)]})))
+       :workflows [(workflows/interactive-form :credential-fn verify-auth)]})))

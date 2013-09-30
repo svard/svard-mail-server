@@ -1,13 +1,16 @@
 (ns svard-mail-server.test.handler
   (:use clojure.test
         ring.mock.request  
-        svard-mail-server.handler))
+        [svard-mail-server handler db]))
 
 (deftest test-app
   (testing "main route"
     (let [response (app (request :get "/"))]
+      (is (= (:status response) 302))))
+  
+  (testing "login route"
+    (let [response (app (request :get "/login"))]
       (is (= (:status response) 200))))
-;      (is (= (:body response) "Hello World"))))
   
   (testing "not-found route"
     (let [response (app (request :get "/invalid"))]

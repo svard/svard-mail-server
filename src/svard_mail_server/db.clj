@@ -13,9 +13,8 @@
 (defn get-credentials
   "Get the credentials for the supplied user"
   [user]
-  (if-let [cred (mc/find-one-as-map "profiles" {:username user} ["username" "password" "roles"])]
-    {:username user :password (:password cred) :roles (set (map (partial keyword "svard-mail-server.handler") (:roles cred)))}
-    nil))
+  (when-let [cred (mc/find-one-as-map "profiles" {:username user} ["username" "password" "roles"])]
+    {:username user :password (:password cred) :roles (set (map (partial keyword "svard-mail-server.handler") (:roles cred)))}))
 
 (defn add-contact
   "Adds one contact to the given user"
