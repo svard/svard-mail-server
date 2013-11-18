@@ -1,6 +1,7 @@
 # svard-mail-server
 
-Clojure backend for svard-mail.
+~~Clojure backend for svard-mail.~~
+No longer used
 
 ## Prerequisites
 
